@@ -152,7 +152,6 @@ public:
         unsigned int szwh = b.biHeight*b.biWidth;
         input = new PE[szwh];
         PE *setpe = new PE[sz];
-        std::vector <PE> hidden_layer;
         for(unsigned int u=0,k=0; u<n_elements; u++)
         {
             for(unsigned int i=0; i<b.biHeight; i++)

@@ -4,8 +4,7 @@
 #include <time.h>
 #include <vector>
 #include <math.h>
-#include <iostream>
-using namespace std;
+
 
 //Sigmoid as an activation function
 #define FUNC_ATIVA_LOG(a) 1/(1+exp(-a))
@@ -97,7 +96,7 @@ public:
         we.clear();
     }
 };
-long double largest_step_size(vector <PE*> input)
+long double largest_step_size(std::vector <PE*> input)
 {
     long double lss =0;
     for(unsigned int i=0; i<input.size(); i++)
@@ -107,7 +106,7 @@ long double largest_step_size(vector <PE*> input)
     lss =(2*input.size())/lss;
     return lss;
 }
-long double fastest_step_size(vector <PE*> input)
+long double fastest_step_size(std::vector <PE*> input)
 {
     return largest_step_size(input)/2.0f;
 }
