@@ -114,11 +114,11 @@ public:
     int identify(int id)
     {
         const int n_elements = 5;
-        for(unsigned int u=0,k=0; u<n_elements; u++)
+        for(unsigned int u=0; u<n_elements; u++)
         {
             for(unsigned int i=0,t =0; i<b.biHeight; i++)
             {
-                for(unsigned int j=0; j<b.biWidth; j++, t++,k++)
+                for(unsigned int j=0; j<b.biWidth; j++, t++)
                 {
                     if(pixels[i][j].B==1){
                         input[u].pe[t]->my_value_f = j;
