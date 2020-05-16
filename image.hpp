@@ -113,7 +113,7 @@ public:
 
     int identify(int id)
     {
-        const int n_elements = 5;
+        const int n_elements = 10;
         for(unsigned int u=0,k=0; u<n_elements; u++)
         {
             for(unsigned int i=0,t =0; i<b.biHeight; i++)
@@ -121,7 +121,7 @@ public:
                 for(unsigned int j=0; j<b.biWidth; j++, t++,k++)
                 {
                     if(pixels[i][j].B==1){
-                        input[u].pe[t]->my_value_f = i;
+                        input[u].pe[t]->my_value_f = j;
                     }
                     else{
                         input[u].pe[t]->my_value_f = 1;
@@ -147,7 +147,7 @@ public:
 
     int create_layer()
     {
-        const int n_elements = 5;          //Número de elementos na "hidden layer"
+        const int n_elements = 10;          //Número de elementos na "hidden layer"
         unsigned int sz = b.biHeight*b.biWidth*n_elements;
         unsigned int szwh = b.biHeight*b.biWidth;
         input = new PE[szwh];
