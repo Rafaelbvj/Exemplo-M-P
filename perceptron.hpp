@@ -28,9 +28,9 @@ typedef long double TYPE;
 typedef TYPE(*Func)(TYPE);
 
 typedef struct act_func{
-    Func activation_func;           //funcao de ativacao
-    Func activation_func_der;       //derivada
-    Func activation_func_der_f;     //derivada com o valor de retorno da funcao de ativacao como parametro
+    Func activation_func;           //Funcao de ativacao
+    Func activation_func_der;       //Derivada
+    
 }ActivationFunction;
 
 class PE
@@ -41,7 +41,7 @@ public:
     std::vector <TYPE> we ;        //pesos
     std::vector <TYPE> we_old;     //pesos antes do ultimo ajuste
     TYPE my_value;                 //valor elemento de processo, somatorio (Wi*Xi)
-    long double my_value_f;        //valor elemento de processo na funcao de ativacao
+    TYPE my_value_f;               //valor elemento de processo na funcao de ativacao
     TYPE bi ;                      //bias coeficiente linear
 
     // ef*fu*uw = erro instantaneo ou gradiente (dJ/dw)
@@ -116,7 +116,7 @@ public:
             //Resposta desejada, nao � necessario ajustes
             return true;
         }
-        fu = s_func->activation_func_der_f(my_value_f);
+        fu = s_func->activation_func_der(my_value);
 
         uw = pe[index_weight]->my_value_f;
 
@@ -136,6 +136,7 @@ public:
             //Resposta desejada, nao � necessario ajustes
             return true;
         }
+
         fu = FUNC_ATIVA_LOG_DER_F(my_value_f);
 
         uw = pe[index_weight]->my_value_f;
@@ -226,11 +227,11 @@ bool compare_forward (PE& first, std::vector <PE> previous_layer, int index_weig
             //Elemento nao est� conectado � camada
             return false;
         }
-        first.ef += (*it).ef  *  (*it).we_old[c] * first.s_func->activation_func_der_f((*it).my_value_f);
+        first.ef += (*it).ef  *  (*it).we_old[c] * first.s_func->activation_func_der((*it).my_value);
 
     }
 
-    first.fu = first.s_func->activation_func_der_f(first.my_value_f);
+    first.fu = first.s_func->activation_func_der(first.my_value);
 
     first.uw = first.pe[index_weight]->my_value_f;
 
